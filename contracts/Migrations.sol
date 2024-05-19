@@ -5,7 +5,7 @@ contract Migrations {
   address owner = msg.sender;
   uint256 lastCompiltedMigration;
 
-  constructor() {
+  constructor() payable {
     owner = msg.sender;
   }
 
@@ -21,7 +21,7 @@ contract Migrations {
     lastCompiltedMigration = completed;
   }
 
-  function upgrade (address _newAddress) public restricted {
+  function upgrade (address _newAddress) external restricted {
     Migrations upgraded = Migrations(_newAddress);
     upgraded.setCompleted(lastCompiltedMigration);
   }
