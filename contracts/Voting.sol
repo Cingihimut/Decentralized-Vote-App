@@ -48,24 +48,30 @@ contract Voting {
         emit CandidateAdded(newCandidateId, name);
     }
 
-    function vote(uint256 _candidateId) external notOwner {
+ function vote(uint256 _candidateId) external notOwner {
+        // Memindahkan status votedOrNot[msg.sender] ke dalam variabel lokal
         bool hasVoted = votedOrNot[msg.sender];
         
         require(!hasVoted, "You have already voted");
         require(_candidateId > 0, "Invalid candidate ID: must be greater than 0");
         require(_candidateId <= candidatesCount, "Invalid candidate ID: exceeds candidates count");
 
+        // Mengupdate status pemilih dalam variabel state
         votedOrNot[msg.sender] = true;
-        candidates[_candidateId].voteCount++;
+
+        // Mengakses kandidat dalam variabel lokal untuk mengurangi SLOAD
+        Candidate storage candidate = candidates[_candidateId];
+        candidate.voteCount++;
 
         emit VoteCast(msg.sender, _candidateId);
     }
 
     function getCandidate(uint256 _candidateId) public view returns (Candidate memory) {
-        require(_candidateId > 0 && _candidateId <= candidatesCount, "Invalid Candidate Id");
+        require(_candidateId > 0, "Invalid Candidate Id: must be greater than 0");
+        require(_candidateId <= candidatesCount, "Invalid Candidate Id: exceeds candidates count");
         return candidates[_candidateId];
     }
-
+    
     function getCandidateById(uint256 _candidateId) public view returns (string memory, string memory, uint256) {
         require(_candidateId > 0 && _candidateId <= candidatesCount, "Invalid candidate ID");
         Candidate memory candidate = candidates[_candidateId];
