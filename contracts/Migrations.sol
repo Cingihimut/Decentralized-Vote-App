@@ -2,8 +2,8 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 contract Migrations {
-  address public owner = msg.sender;
-  uint256 public lastCompiltedMigration;
+  address owner = msg.sender;
+  uint256 lastCompiltedMigration;
 
   constructor() {
     owner = msg.sender;
