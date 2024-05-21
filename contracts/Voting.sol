@@ -48,7 +48,7 @@ contract Voting {
         emit CandidateAdded(newCandidateId, name);
     }
 
- function vote(uint256 _candidateId) external notOwner {
+    function vote(uint256 _candidateId) external notOwner {
         // Memindahkan status votedOrNot[msg.sender] ke dalam variabel lokal
         bool hasVoted = votedOrNot[msg.sender];
         
