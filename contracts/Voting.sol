@@ -49,17 +49,14 @@ contract Voting {
     }
 
     function vote(uint256 _candidateId) external notOwner {
-        // Memindahkan status votedOrNot[msg.sender] ke dalam variabel lokal
         bool hasVoted = votedOrNot[msg.sender];
         
         require(!hasVoted, "You have already voted");
         require(_candidateId > 0, "Invalid candidate ID: must be greater than 0");
         require(_candidateId <= candidatesCount, "Invalid candidate ID: exceeds candidates count");
 
-        // Mengupdate status pemilih dalam variabel state
         votedOrNot[msg.sender] = true;
 
-        // Mengakses kandidat dalam variabel lokal untuk mengurangi SLOAD
         Candidate storage candidate = candidates[_candidateId];
         candidate.voteCount++;
 
@@ -73,7 +70,8 @@ contract Voting {
     }
     
     function getCandidateById(uint256 _candidateId) public view returns (string memory, string memory, uint256) {
-        require(_candidateId > 0 && _candidateId <= candidatesCount, "Invalid candidate ID");
+        require(_candidateId > 0, "Invalid candidate ID");
+        require(_candidateId <= candidatesCount, "Invalid candidate ID");
         Candidate memory candidate = candidates[_candidateId];
         return (candidate.name, candidate.deskripsi, candidate.voteCount);
     }
