@@ -15,5 +15,17 @@ contract("Voting", accounts => {
         expect(candidate.deskripsi).to.equal("Deskripsi dari aldi")
         expect(candidate.voteCount.toString()).to.equal("0")
     });
-    
+
+    it('', () => {
+        
+    });
+    it('', () => {
+        
+    });
+    it('', () => {
+        
+    });
+    it('', () => {
+        
+    });
 })
