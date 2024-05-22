@@ -1,7 +1,7 @@
 require("dotenv").config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const { default: plugin } = require("tailwindcss");
-const { INFURA_API_KEY, MNEMONIC } = process.env;
+const INFURA_API_KEY = "https://sepolia.infura.io/v3/50ac20f15ecd44c792c5d5a0d9c774a8";
+const MNEMONIC = "solid fog skirt auction pizza left obscure swarm cool envelope basket spoon";
 
 module.exports = {
   networks: {
@@ -11,7 +11,12 @@ module.exports = {
       network_id: "*", // Any network (default: none)
     },
     sepolia: {
-      provider: () => new HDWalletProvider(MNEMONIC, INFURA_API_KEY),
+      provider: () => new HDWalletProvider({
+        mnemonic: {
+          phrase: MNEMONIC
+        },
+        providerOrUrl: INFURA_API_KEY
+      }),
       network_id: "11155111",
       gas: 4465030,
     },
@@ -26,27 +31,9 @@ module.exports = {
   compilers: {
     solc: {
       version: "0.8.0", // Fetch exact version from solc-bin (default: truffle's version)
-      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      // settings: {          // See the solidity docs for advice about optimization and evmVersion
-      //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
-      //  evmVersion: "byzantium"
-      // }
     },
   },
 
-  // Truffle DB is currently disabled by default; to enable it, change enabled:
-  // false to enabled: true. The default storage location can also be
-  // overridden by specifying the adapter settings, as shown in the commented code below.
-  //
-  // NOTE: It is not possible to migrate your contracts to truffle DB and you should
-  // make a backup of your artifacts to a safe location before enabling this feature.
-  //
-  // After you backed up your artifacts you can utilize db by running migrate as follows:
-  // $ truffle migrate --reset --compile-all
-  //
   // db: {
   //   enabled: false,
   //   host: "127.0.0.1",

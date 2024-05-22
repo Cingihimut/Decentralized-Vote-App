@@ -70,7 +70,8 @@ contract Voting {
     }
     
     function getCandidateById(uint256 _candidateId) public view returns (string memory, string memory, uint256) {
-        require(_candidateId > 0 && _candidateId <= candidatesCount, "Invalid candidate ID");
+        require(_candidateId > 0, "Invalid candidate ID");
+        require(_candidateId <= candidatesCount, "Invalid candidate ID");
         Candidate memory candidate = candidates[_candidateId];
         return (candidate.name, candidate.deskripsi, candidate.voteCount);
     }

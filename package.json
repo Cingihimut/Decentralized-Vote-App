@@ -10,9 +10,10 @@
   },
   "dependencies": {
     "@truffle/contract": "^4.6.24",
-    "@truffle/hdwallet-provider": "^2.1.12",
+    "@truffle/hdwallet-provider": "^2.1.15",
     "autoprefixer": "10.4.14",
     "benchmark": "^2.1.4",
+    "chai": "^5.1.1",
     "dotenv": "^16.4.5",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.6",
@@ -23,7 +24,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.2",
-    "truffle": "^5.10.1",
+    "truffle": "^5.11.5",
     "web3": "^4.8.0"
   },
   "devDependencies": {
