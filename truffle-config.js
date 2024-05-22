@@ -1,7 +1,7 @@
 require("dotenv").config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const INFURA_API_KEY = "https://sepolia.infura.io/v3/50ac20f15ecd44c792c5d5a0d9c774a8";
-const MNEMONIC = "solid fog skirt auction pizza left obscure swarm cool envelope basket spoon";
+const INFURA_API_KEY = process.env;
+const MNEMONIC = process.env;
 
 module.exports = {
   networks: {
