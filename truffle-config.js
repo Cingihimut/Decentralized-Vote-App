@@ -1,7 +1,7 @@
 require("dotenv").config();
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const INFURA_API_KEY = process.env;
-const MNEMONIC = process.env;
+const INFURA_API_KEY = process.env.INFURA_API_KEY;
+const MNEMONIC = process.env.MNEMONIC;
 
 module.exports = {
   networks: {
@@ -15,19 +15,17 @@ module.exports = {
         mnemonic: {
           phrase: MNEMONIC
         },
-        providerOrUrl: INFURA_API_KEY
+        providerOrUrl: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`
       }),
       network_id: "11155111",
       gas: 4465030,
     },
   },
 
-  // Set default mocha options here, use special reporters, etc.
   mocha: {
     // timeout: 100000
   },
 
-  // Configure your compilers
   compilers: {
     solc: {
       version: "0.8.0", // Fetch exact version from solc-bin (default: truffle's version)

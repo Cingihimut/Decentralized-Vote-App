@@ -1,6 +1,6 @@
 const Benchmark = require("benchmark");
-const PRIVATE_KEY = process.env;
-const INFURA_API_KEY = process.env;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const INFURA_API_KEY = `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`;
 const fs = require("fs");
 const contractJson = JSON.parse(
   fs.readFileSync("../build/contracts/Voting.json", "utf8")
